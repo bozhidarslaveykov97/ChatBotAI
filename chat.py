@@ -25,11 +25,11 @@ model = NeuralNet(input_size, hidden_size, output_size).to(device)
 model.load_state_dict(model_state)
 model.eval()
 
-bot_name = "Sam"
-print("Let's chat! (type 'quit' to exit)")
+bot_name = "Ванеса"
+print("Нека си початим!")
 while True:
     # sentence = "do you use credit cards?"
-    sentence = input("You: ")
+    sentence = input("Ти: ")
     if sentence == "quit":
         break
 
@@ -50,4 +50,4 @@ while True:
             if tag == intent["tag"]:
                 print(f"{bot_name}: {random.choice(intent['responses'])}")
     else:
-        print(f"{bot_name}: I do not understand...")
+        print(f"{bot_name}: Не разбирам какво ми говориш...")
