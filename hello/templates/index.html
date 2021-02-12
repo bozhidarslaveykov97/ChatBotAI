@@ -77,11 +77,6 @@
     }
 
 
-    $.post("/api/send_chat", { input: userInput.val() })
-    .done(function(data) {
-
-    });
-
     $('.js-chat-body').append(
       '<div class="well chat-well">' +
             '         <img src="{% static 'vanesa.png'%}" class="chat-avatar">'
@@ -89,6 +84,18 @@
             '        <div style="clear:both"></div>' +
             '      </div>');
 
+    $.post("/api/send_chat", { input: userInput.val() })
+    .done(function(data) {
+         $('.js-chat-body').append(
+              '<div class="well chat-well">' +
+                    '         <img src="{% static 'vanesa.png'%}" class="chat-avatar">'
+                         + data +
+                    '        <div style="clear:both"></div>' +
+                    '      </div>');
+
+
+        $(".js-chat-body").scrollTop($(".js-chat-body")[0].scrollHeight);
+    });
 
     userInput.val('');
 

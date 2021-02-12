@@ -21,6 +21,6 @@ def index(request):
 
 def api_send_chat(request):
 
-    chatbotResponse = ChatBot.Input('maiko');
+    chatbotResponse = ChatBot.Input(request.POST.get("input", ""));
 
     return HttpResponse(chatbotResponse)
