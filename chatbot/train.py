@@ -1,13 +1,12 @@
 import numpy as np
-import random
 import json
 
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 
-from nltk_utils import bag_of_words, tokenize, stem
-from model import NeuralNet
+from chatbot.nltk_utils import bag_of_words, tokenize, stem
+from chatbot.model import NeuralNet
 
 with open('intents.json', 'r', encoding="utf8") as f:
     intents = json.load(f)

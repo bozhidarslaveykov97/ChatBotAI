@@ -1,5 +1,6 @@
-
-.idea/modules.xml
-.idea/misc.xml
-.idea/inspectionProfiles/profiles_settings.xml
-.idea/AiChatBot.iml
+venv
+*.pyc
+staticfiles
+.env
+db.sqlite3
+getting-started/*
