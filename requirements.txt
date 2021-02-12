@@ -1,4 +1,4 @@
 django
 gunicorn
 django-heroku
-torch
+torch=3.7
