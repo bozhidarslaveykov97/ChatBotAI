@@ -46,4 +46,4 @@ class ChatBot():
                 if tag == intent["tag"]:
                     return bot_name + ": <br />" + random.choice(intent['responses'])
         else:
-            return bot_name + ": Не разбирам какво ми говориш..."
+            return ""
