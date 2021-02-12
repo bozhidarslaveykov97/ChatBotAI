@@ -2,22 +2,6 @@
 {% load static %}
 
 {% block content %}
-
-<style>
-  .chat-well {
-    font-size: 15px;font-weight: bold;width: auto;
-  }
-  .chat-avatar {
-   padding:5px;height:55px;width: 55px;border-radius: 50%;float: left;border: 3px solid #fff;margin-right: 15px;
-  }
-  .chat-body {
-    height: 500px;overflow-y:scroll;margin-bottom: 20px;
-  }
-  .user-input {
-    height: 70px;
-  }
-</style>
-
 <div class="jumbotron text-center">
   <div class="container">
     <a href="/" class="lang-logo">
@@ -30,7 +14,6 @@
   </div>
 </div>
 <div class="container">
-  <hr>
   <div class="row">
     <div class="col-md-12">
     <div class="chat-body js-chat-body">
@@ -97,7 +80,7 @@
                   $(".js-chat-body").scrollTop($(".js-chat-body")[0].scrollHeight);
               });
 
-            userInput.val(''); 
+            userInput.val('');
             $(".js-chat-body").scrollTop($(".js-chat-body")[0].scrollHeight);
 
       }, 600);
@@ -105,4 +88,19 @@
 
   }
 </script>
+
+<style>
+  .chat-well {
+    font-size: 15px;font-weight: bold;width: auto;
+  }
+  .chat-avatar {
+   padding:5px;height:55px;width: 55px;border-radius: 50%;float: left;border: 3px solid #fff;margin-right: 15px;
+  }
+  .chat-body {
+    height: 500px;overflow-y:scroll;margin-bottom: 20px;
+  }
+  .user-input {
+    height: 70px;
+  }
+</style>
 {% endblock %}
