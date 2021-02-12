@@ -1,5 +1,6 @@
 from django.shortcuts import render
-# from django.http import HttpResponse
+from django.http import HttpResponse
+from chatbot.chat import ChatBot
 
 # from .models import Greeting
 
@@ -17,3 +18,9 @@ def index(request):
 #     greetings = Greeting.objects.all()
 #
 #     return render(request, "db.html", {"greetings": greetings})
+
+def api_send_chat(request):
+
+    chatbotResponse = ChatBot.Input('maiko');
+
+    return HttpResponse(chatbotResponse)

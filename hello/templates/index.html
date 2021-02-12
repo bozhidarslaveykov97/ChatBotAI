@@ -3,6 +3,21 @@
 
 {% block content %}
 
+<style>
+  .chat-well {
+    font-size: 15px;font-weight: bold;width: auto;
+  }
+  .chat-avatar {
+   padding:5px;height:55px;width: 55px;border-radius: 50%;float: left;border: 3px solid #fff;margin-right: 15px;
+  }
+  .chat-body {
+    height: 500px;overflow-y:scroll;margin-bottom: 20px;
+  }
+  .user-input {
+    height: 70px;
+  }
+</style>
+
 <div class="jumbotron text-center">
   <div class="container">
     <a href="/" class="lang-logo">
@@ -18,21 +33,22 @@
   <hr>
   <div class="row">
     <div class="col-md-12">
-    <div style="max-height: 500px;overflow-y:scroll;margin-bottom: 20px">
-      <div class="well" style="font-size: 15px;font-weight: bold;width: auto">
-         <img src="{% static 'vanesa.png'%}" style="padding:5px;height:55px;width: 55px;border-radius: 50%;float: left;border: 3px solid #fff;margin-right: 15px;">
+    <div class="chat-body js-chat-body">
+
+   <!--   <div class="well chat-well">
+         <img src="{% static 'vanesa.png'%}" class="chat-avatar">
         Здравей..
         <div style="clear:both"></div>
-      </div>
-      <div class="well" style="font-size: 15px;font-weight: bold">
-         <img src="{% static 'vanesa.png'%}" style="padding:5px;height:55px;width: 55px;border-radius: 50%;float: left;border: 3px solid #fff;margin-right: 15px;">
-        Здравей..
-        <div style="clear:both"></div>
-      </div>
+      </div>-->
+
     </div>
     </div>
-    <div class="col-md-12">
-      <textarea class="form-control"></textarea>
+    <div class="col-md-10">
+      Започни да пишеш..<br />
+      <textarea class="form-control user-input js-user-input"></textarea>
+    </div>
+    <div class="col-md-2" style="margin-top:15px;">
+      <button onclick="sendMessage()" class="btn btn-success btn-block" style="height: 73px">Изпращане</button>
     </div>
   </div>
   <br />
@@ -40,4 +56,44 @@
     Чат бота още се учи така, че не му се сърдете ако не ви отговори адекватно.
   </div>
 </div>
+<script>
+
+  $.ajaxSetup({
+    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+  });
+
+   $(document).keypress(function(e) {
+     if (e.which == 13) {
+       sendMessage();
+     }
+   });
+
+  function sendMessage() {
+
+    var userInput = $('.js-user-input');
+
+    if (userInput.val() == '' || userInput.val() == ' ') {
+      return;
+    }
+
+
+    $.post("/api/send_chat", { input: userInput.val() })
+    .done(function(data) {
+
+    });
+
+    $('.js-chat-body').append(
+      '<div class="well chat-well">' +
+            '         <img src="{% static 'vanesa.png'%}" class="chat-avatar">'
+                 + userInput.val() +
+            '        <div style="clear:both"></div>' +
+            '      </div>');
+
+
+    userInput.val('');
+
+    $(".js-chat-body").scrollTop($(".js-chat-body")[0].scrollHeight);
+
+  }
+</script>
 {% endblock %}

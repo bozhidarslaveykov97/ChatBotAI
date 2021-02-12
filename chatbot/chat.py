@@ -7,10 +7,10 @@ from chatbot.nltk_utils import bag_of_words, tokenize
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-with open('intents.json', 'r', encoding="utf8") as json_data:
+with open('./chatbot/intents.json', 'r', encoding="utf8") as json_data:
     intents = json.load(json_data)
 
-FILE = "data.pth"
+FILE = "./chatbot/data.pth"
 data = torch.load(FILE)
 
 input_size = data["input_size"]
@@ -25,28 +25,25 @@ model.load_state_dict(model_state)
 model.eval()
 
 bot_name = "Ванеса"
-print("Нека си початим!")
-while True:
-    # sentence = "do you use credit cards?"
-    sentence = input("Ти: ")
-    if sentence == "quit":
-        break
 
-    sentence = tokenize(sentence)
-    X = bag_of_words(sentence, all_words)
-    X = X.reshape(1, X.shape[0])
-    X = torch.from_numpy(X).to(device)
+class ChatBot():
+    def Input(sentence):
 
-    output = model(X)
-    _, predicted = torch.max(output, dim=1)
+        sentence = tokenize(sentence)
+        X = bag_of_words(sentence, all_words)
+        X = X.reshape(1, X.shape[0])
+        X = torch.from_numpy(X).to(device)
 
-    tag = tags[predicted.item()]
+        output = model(X)
+        _, predicted = torch.max(output, dim=1)
 
-    probs = torch.softmax(output, dim=1)
-    prob = probs[0][predicted.item()]
-    if prob.item() > 0.75:
-        for intent in intents['intents']:
-            if tag == intent["tag"]:
-                print(f"{bot_name}: {random.choice(intent['responses'])}")
-    else:
-        print(f"{bot_name}: Не разбирам какво ми говориш...")
+        tag = tags[predicted.item()]
+
+        probs = torch.softmax(output, dim=1)
+        prob = probs[0][predicted.item()]
+        if prob.item() > 0.75:
+            for intent in intents['intents']:
+                if tag == intent["tag"]:
+                    return "{bot_name}: {random.choice(intent['responses'])}"
+        else:
+            return "{bot_name}: Не разбирам какво ми говориш..."

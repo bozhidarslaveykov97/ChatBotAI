@@ -16,6 +16,8 @@ import hello.views
 
 urlpatterns = [
     path("", hello.views.index, name="index"),
+    path("api/send_chat", hello.views.api_send_chat, name="api_send_chat"),
+
    #path("db/", hello.views.db, name="db"),
    #path("admin/", admin.site.urls),
 ]
