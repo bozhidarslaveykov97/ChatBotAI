@@ -135,6 +135,24 @@
         "Четейки вицове за блондинки разбираш, че най-тъпи са хората, които измислят тези вицове за блондинки.",
         "Блондинка пише книга за живота си... след 2 седмици книгата става най-тиражираният сборник за вицове."
       ]
+    },
+    {
+      "tag": "youtube-music",
+      "patterns": [
+        "Кажи някоя песен",
+        "Поздрави ме с песен",
+        "Кажи яка песен",
+        "Какви песни харесваш?",
+        "Каква музика харесваш?"
+      ],
+      "responses": [
+        "Ето тази е много яка..<br /><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/13MQlU9JntQ\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+        "Тази е супер...<br /><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/_zO8mnLTqmo\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+        "Много ме кефят руски песни...<br /><iframe width=\"315\" height=\"315\" src=\"https://www.youtube.com/embed/CzfvU8tKm5I\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+        "Тази ме кефи...<br /><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/EX05noO1zFU\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+        "Мега якаа песенн...<br /><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/8zst1f5cZGU\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+        "Слушаш ли sLav4ou?<br /><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/idPkVvyGwCc\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+      ]
     }
   ]
 }
