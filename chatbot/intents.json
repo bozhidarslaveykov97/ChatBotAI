@@ -21,7 +21,7 @@
       ]
     },
     {
-      "tag": "answers",
+      "tag": "yes-answers",
       "patterns": [
         "Да",
         "Добре",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "tag": "answers",
+      "tag": "no-answers",
       "patterns": [
         "Не"
       ],
