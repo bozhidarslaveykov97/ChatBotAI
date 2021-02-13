@@ -1,4 +1,0 @@
-django
-gunicorn
-django-heroku
-torch==1.7.1
