@@ -42,16 +42,36 @@ class ChatBot():
         except ChatbotQuestionSession.DoesNotExist:
             hasChatbotQuestionSession = 0
         if (hasChatbotQuestionSession > 0):
-
             UserPersonality.objects.create(user_id=fromUserId, personality_key=currentUserSession.question_key, personality_value=answer)
 
         ChatbotQuestionSession.objects.filter(user=userId).delete()
 
-        return 'Добре! :)'
+        # Whats next?
+        getAnsweredQuestion = ChatBot.getQuestionByKey(currentUserSession.question_key)
+        if (getAnsweredQuestion['responses_after_question']):
+            responseAfterQuestion = random.choice(getAnsweredQuestion['responses_after_question'])
+            
+            return responseAfterQuestion
+        else:
+            return 'Добре! :)'
 
     def getQuestionByKey(questionKey):
         for questions in allQuestions['questions']:
-            return questions['patterns'][questionKey]
+            return random.choice(questions['patterns'][questionKey])
+
+    def startQuestionSession(selectedQuestion,selectedQuestionKey,forUser):
+        try:
+            currentUser = User.objects.get(id=1)
+        except User.DoesNotExist:
+            currentUser = False
+        if (currentUser == False):
+            currentUser = User.objects.create(first_name=forUser, registration_date=datetime.datetime.now())
+
+        ChatbotQuestionSession.objects.create(user=currentUser, question=selectedQuestion['question'],
+                                              question_key=selectedQuestionKey,
+                                              asked_question_date=datetime.datetime.now())
+
+        return bot_name + ": <br />" + selectedQuestion['question']
 
     def getRandomQuestion(forUser):
 
@@ -60,20 +80,11 @@ class ChatBot():
             patternKeys = []
             for pattern in questions['patterns']:
                 patternKeys.append(pattern)
-            selectedQuestionKey = random.choice(patternKeys)
+            selectedQuestionKey = 'personaliy_name' #random.choice(patternKeys)
             selectedQuestion = random.choice(questions['patterns'][selectedQuestionKey])
 
         if (selectedQuestion):
-            try:
-                currentUser = User.objects.get(id=1)
-            except User.DoesNotExist:
-                currentUser = False
-            if (currentUser == False):
-                currentUser = User.objects.create(first_name=forUser, registration_date=datetime.datetime.now())
-
-            ChatbotQuestionSession.objects.create(user=currentUser, question=selectedQuestion['question'], question_key=selectedQuestionKey, asked_question_date=datetime.datetime.now())
-
-            return bot_name + ": <br />" + selectedQuestion['question']
+            return ChatBot.startQuestionSession(selectedQuestion, selectedQuestionKey, forUser)
 
     def Input(sentence, fromUser):
 
