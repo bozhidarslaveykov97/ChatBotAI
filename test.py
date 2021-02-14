@@ -14,6 +14,6 @@ for questions in allQuestions['questions']:
 
     selectedQuestion = random.choice(questions['patterns'][random.choice(patternKeys)])
 
-    print(selectedQuestion)
+    print(selectedQuestion['question'])
 
 

@@ -43,13 +43,10 @@ class ChatBot():
     def getRandomQuestion(forUser):
 
         selectedQuestion = False
-
         for questions in allQuestions['questions']:
-
             patternKeys = []
             for pattern in questions['patterns']:
                 patternKeys.append(pattern)
-
             selectedQuestion = random.choice(questions['patterns'][random.choice(patternKeys)])
 
         if (selectedQuestion):
@@ -60,9 +57,9 @@ class ChatBot():
             if (currentUser == False):
                 currentUser = User.objects.create(first_name=forUser, registration_date=datetime.datetime.now())
 
-            ChatbotQuestionSession.objects.create(user=currentUser, question=selectedQuestion.question, asked_question_date=datetime.datetime.now())
+            ChatbotQuestionSession.objects.create(user=currentUser, question=selectedQuestion['question'], asked_question_date=datetime.datetime.now())
 
-            return bot_name + ": <br />" + selectedQuestion.question
+            return bot_name + ": <br />" + selectedQuestion['question']
 
     def Input(sentence, fromUser):
 
