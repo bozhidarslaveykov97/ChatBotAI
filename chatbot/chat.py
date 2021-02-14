@@ -39,7 +39,9 @@ def replaceTextBetween(originalText, delimeterA, delimterB, replacementText):
 
 class ChatBot():
 
-    def saveTheAnswerFromQuestion(answer, fromUser):
+    def saveTheAnswerFromQuestion(answer, fromUserId):
+
+        UserPersonality.objects.create(user_id=fromUserId, personality_key = "", personality_value=answer)
 
         return 'Добре! :)'
 
@@ -74,7 +76,7 @@ class ChatBot():
         if (hasChatbotQuestionSession > 0):
             # Save the answer
             ChatbotQuestionSession.objects.filter(user=userId).delete()
-            return ChatBot.saveTheAnswerFromQuestion(sentence, fromUser)
+            return ChatBot.saveTheAnswerFromQuestion(sentence, fromUserId=userId)
 
         sentence = tokenize(sentence)
         X = bag_of_words(sentence, all_words)

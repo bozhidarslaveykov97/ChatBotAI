@@ -12,4 +12,5 @@ class UserPersonality(models.Model):
 class ChatbotQuestionSession(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.CharField(max_length=200)
+    question_key = models.CharField(max_length=200, default='')
     asked_question_date = models.DateTimeField('date published')

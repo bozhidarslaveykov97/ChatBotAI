@@ -2,18 +2,83 @@
   "questions": [
     {
       "tag": "personality",
-      "patterns": [
-        "Как се казваш? {personaliy_name}",
-        "На колко години си? {personality_years}",
-        "Каква музика слушаш? {personality_music}",
-        "Имаш ли шофьорска книжка? {personality_driving_license}",
-        "Имаш ли автомобил? {personality_own_car}",
-        "От кой град си? {personality_city}",
-        "В кой град живееш? {personality_living_city}",
-        "Имаш ли гадже? {personality_girlfriend_boyfrend}",
-        "Как се казва гаджето ти? {personality_girlfriend_boyfrend}",
-        "Имаш ли инстаграм? {personality_instagram}"
-      ]
+      "patterns": {
+        "Как се казваш?": [
+          {
+            "question_key": "personaliy_name",
+            "answer_must_be": "human_name",
+            "responses_after_question": [
+              "Приятно ми е {personaliy_name} :), аз съм {bot_name} :)",
+              "Готино име! Приятно ми е {personaliy_name} :), аз съм {bot_name} :)",
+              "Супер! Приятно ми е {personaliy_name} :), аз съм {bot_name} :)"
+            ]
+          }
+        ],
+        "На колко години си?": [
+          {
+            "question_key": "personality_years",
+            "answer_must_be": "number",
+            "view_response_after_question": "personality_years.html"
+          }
+        ],
+        "Каква музика слушаш?": [
+          {
+            "question_key": "{personality_music}",
+            "answer_must_be": "string",
+            "view_response_after_question": "personality_music.html"
+          }
+        ],
+        "Имаш ли шофьорска книжка?": [
+          {
+            "question_key": "personality_driving_license",
+            "answer_must_be": "yes_or_no",
+            "view_response_after_question": "personality_driving_license.html",
+            "question_after_response": "personality_own_car|personality_own_car_brand"
+          }
+        ],
+        "Имаш ли автомобил?": [
+          {
+            "question_key": "personality_own_car",
+            "answer_must_be": "yes_or_no",
+            "view_response_after_question": "personality_own_car.html"
+          }
+        ],
+        "От кой град си?": [
+          {
+            "question_key": "personality_city",
+            "answer_must_be": "city",
+            "view_response_after_question": "personality_city.html"
+          }
+        ],
+        "В кой град живееш?": [
+          {
+            "question_key": "personality_living_city",
+            "answer_must_be": "city",
+            "view_response_after_question": "personality_living_city.html"
+          }
+        ],
+        "Имаш ли гадже?": [
+          {
+            "question_key": "personality_girlfriend_boyfrend",
+            "answer_must_be": "yes_or_no",
+            "view_response_after_question": "personality_girlfriend_boyfrend.html"
+          }
+        ],
+        "Как се казва гаджето ти?": [
+          {
+            "question_key": "personality_girlfriend_boyfrend_name",
+            "answer_must_be": "human_name",
+            "view_response_after_question": "personality_girlfriend_boyfrend_name.html"
+          }
+        ],
+        "Имаш ли инстаграм?": [
+          {
+            "question_key": "personality_instagram",
+            "answer_must_be": "yes_or_no",
+            "question_after_response": "personality_own_car|personality_own_car_brand"
+          }
+        ]
+      }
     }
   ]
 }
