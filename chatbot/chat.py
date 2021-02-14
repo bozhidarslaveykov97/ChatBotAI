@@ -29,13 +29,28 @@ model.eval()
 
 bot_name = "Ванеса"
 
+def replaceTextBetween(originalText, delimeterA, delimterB, replacementText):
+    leadingText = originalText.split(delimeterA)[0]
+    trailingText = originalText.split(delimterB)[1]
+
+    return leadingText + replacementText + trailingText
+
 class ChatBot():
 
-    def getRandomQuestion(self):
+    def getRandomQuestion(forUser):
         for question in questions['questions']:
-                return bot_name + ": <br />" + random.choice(question['patterns'])
+
+            randomQuestion = random.choice(question['patterns'])
+            randomQuestion = replaceTextBetween(randomQuestion, '{','}', '')
+
+            return bot_name + ": <br />" + randomQuestion
 
     def Input(sentence):
+
+        hasActiveQuestionFromBot = 1
+        if (hasActiveQuestionFromBot):
+
+            return "Окей, супер."
 
         sentence = tokenize(sentence)
         X = bag_of_words(sentence, all_words)

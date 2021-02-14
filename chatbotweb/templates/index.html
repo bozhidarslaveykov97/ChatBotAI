@@ -41,9 +41,11 @@
 </div>
 <script>
 
-  $.ajaxSetup({
-    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-  });
+    $(document).ready(function () {
+    $.ajaxSetup({
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+      });
+    });
 
    $(document).keypress(function(e) {
      if (e.which == 13) {
@@ -51,6 +53,20 @@
      }
    });
 
+   function getRandomQuestion() {
+        $.post("/api/get_random_question")
+              .done(function (data) {
+                  if (data != '') {
+                      $('.js-chat-body').append(
+                          '<div class="well chat-well">' +
+                          '         <img src="{% static 'vanesa.png'%}" class="chat-avatar">' + data +
+                      '     <div style="clear:both"></div>' +
+                      '   </div>');
+                  }
+                  $(".js-chat-body").scrollTop($(".js-chat-body")[0].scrollHeight);
+              });
+   }
+   
   function sendMessage() {
 
     var userInput = $('.js-user-input');
@@ -81,6 +97,11 @@
                   }
 
                   $(".js-chat-body").scrollTop($(".js-chat-body")[0].scrollHeight);
+
+               setTimeout(function () {
+                   getRandomQuestion();
+               }, 3000);
+
               });
 
             userInput.val('');
