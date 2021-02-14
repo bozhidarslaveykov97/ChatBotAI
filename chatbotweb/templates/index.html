@@ -42,9 +42,9 @@
 <script>
 
     $(document).ready(function () {
-    $.ajaxSetup({
-        data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-      });
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+          });
     });
 
    $(document).keypress(function(e) {
@@ -52,6 +52,28 @@
        sendMessage();
      }
    });
+
+    var idleTime = 0;
+    function startIdletimer() {
+        //Increment the idle time counter every seconds.
+        var idleInterval = setInterval(timerIncrement, 1000);
+
+        $(this).keypress(function (e) {
+            idleTime = 0;
+        });
+    }
+
+    var isAnsweredToRandomQuestion = true;
+    function timerIncrement() {
+        idleTime = idleTime + 1;
+        if (idleTime > 9) { // 10 seconds
+            if (isAnsweredToRandomQuestion) {
+                getRandomQuestion();
+                isAnsweredToRandomQuestion = false;
+            }
+             idleTime = 0;
+        }
+    }
 
    function getRandomQuestion() {
         $.post("/api/get_random_question")
@@ -66,8 +88,19 @@
                   $(".js-chat-body").scrollTop($(".js-chat-body")[0].scrollHeight);
               });
    }
+
+   idleTimerStarted = false;
    
   function sendMessage() {
+
+      if (isAnsweredToRandomQuestion == false) {
+          isAnsweredToRandomQuestion = true;
+      }
+
+      if (idleTimerStarted == false) {
+          idleTimerStarted = true;
+          startIdletimer();
+      }
 
     var userInput = $('.js-user-input');
 
@@ -97,10 +130,6 @@
                   }
 
                   $(".js-chat-body").scrollTop($(".js-chat-body")[0].scrollHeight);
-
-               setTimeout(function () {
-                   getRandomQuestion();
-               }, 3000);
 
               });
 

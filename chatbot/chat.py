@@ -49,10 +49,12 @@ class ChatBot():
 
         # Whats next?
         getAnsweredQuestion = ChatBot.getQuestionByKey(currentUserSession.question_key)
-        if (getAnsweredQuestion['view_response_after_question']):
-            # responseAfterQuestion = random.choice(getAnsweredQuestion['view_response_after_question'])
-            responseAfterQuestion = render_to_string('chatbot_response_views/' + getAnsweredQuestion['view_response_after_question'], {'personality_name':answer, 'bot_name':bot_name})
-            return responseAfterQuestion
+        try:
+            if (getAnsweredQuestion['view_response_after_question']):
+                responseAfterQuestion = render_to_string('chatbot_response_views/' + getAnsweredQuestion['view_response_after_question'], {currentUserSession.question_key:answer, 'bot_name':bot_name})
+                return responseAfterQuestion
+        except:
+            return 'Еми.. окей.'
         else:
             return 'Добре! :)'
 
@@ -81,7 +83,7 @@ class ChatBot():
             patternKeys = []
             for pattern in questions['patterns']:
                 patternKeys.append(pattern)
-            selectedQuestionKey = 'personality_name' #random.choice(patternKeys)
+            selectedQuestionKey = random.choice(patternKeys)
             selectedQuestion = random.choice(questions['patterns'][selectedQuestionKey])
 
         if (selectedQuestion):
@@ -93,8 +95,10 @@ class ChatBot():
         try:
             currentUserSession = ChatbotQuestionSession.objects.get(user=userId)
             hasChatbotQuestionSession = 1
-        except ChatbotQuestionSession.DoesNotExist:
+        except :
+            ChatbotQuestionSession.objects.filter(user=userId).delete()
             hasChatbotQuestionSession = 0
+
         if (hasChatbotQuestionSession > 0):
             # Save the answer
             return ChatBot.saveTheAnswerFromQuestion(sentence, fromUserId=userId)

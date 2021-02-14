@@ -7,12 +7,7 @@
           {
             "question": "Как се казваш?",
             "answer_must_be": "human_name",
-            "view_response_after_question": "personality_name.html",
-            "responses_after_question": [
-              "Приятно ми е {personality_name} :), аз съм {bot_name} :)",
-              "Готино име! Приятно ми е {personality_name} :), аз съм {bot_name} :)",
-              "Супер! Приятно ми е {personality_name} :), аз съм {bot_name} :)"
-            ]
+            "view_response_after_question": "personality_name.html"
           }
         ],
         "personality_years": [
@@ -69,6 +64,7 @@
           {
             "question": "Как се казва гаджето ти?",
             "answer_must_be": "human_name",
+            "dont_ask_directly": true,
             "view_response_after_question": "personality_girlfriend_boyfrend_name.html"
           }
         ],

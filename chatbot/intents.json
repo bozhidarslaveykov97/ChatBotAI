@@ -154,6 +154,22 @@
         "Мега якаа песенн...<br /><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/8zst1f5cZGU\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
         "Слушаш ли sLav4ou?<br /><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/idPkVvyGwCc\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
       ]
+    },
+    {
+      "tag": "chatbot-city",
+      "patterns": [
+        "От кой град си?",
+        "От къде си ти?",
+        "От къде си?",
+        "Къде се намираш?",
+        "Къде си в момента?"
+      ],
+      "responses": [
+        "По принцип съм от Родопите.. живях известно време в Хасково, а сега съм на клауд сървърите на CloudVision в София.",
+        "Аз съм от клауда.. Маняш сеш се. CloudVision Ltd. :)",
+        "В София съм разположена. Уча и бачкам като луда",
+        "В София съм."
+      ]
     }
   ]
 }
