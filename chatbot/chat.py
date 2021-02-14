@@ -5,7 +5,7 @@ import datetime
 
 from chatbot.model import NeuralNet
 from chatbot.nltk_utils import bag_of_words, tokenize
-from chatbotweb.models import User,UserPersonality,ChatbotQuestionSession
+from chatbotweb.models import User, UserPersonality, ChatbotQuestionSession
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -13,7 +13,7 @@ with open('./chatbot/intents.json', 'r', encoding="utf8") as json_data:
     intents = json.load(json_data)
 
 with open('./chatbot/questions.json', 'r', encoding="utf8") as json_data:
-    questions = json.load(json_data)
+    allQuestions = json.load(json_data)
 
 FILE = "./chatbot/data.pth"
 data = torch.load(FILE)
@@ -31,28 +31,28 @@ model.eval()
 
 bot_name = "Ванеса"
 
-def replaceTextBetween(originalText, delimeterA, delimterB, replacementText):
-    leadingText = originalText.split(delimeterA)[0]
-    trailingText = originalText.split(delimterB)[1]
-
-    return leadingText + replacementText + trailingText
 
 class ChatBot():
 
     def saveTheAnswerFromQuestion(answer, fromUserId):
 
-        UserPersonality.objects.create(user_id=fromUserId, personality_key = "", personality_value=answer)
+        UserPersonality.objects.create(user_id=fromUserId, personality_key="", personality_value=answer)
 
         return 'Добре! :)'
 
-
     def getRandomQuestion(forUser):
 
-        for question in questions['questions']:
+        selectedQuestion = False
 
-            randomQuestion = random.choice(question['patterns'])
-            randomQuestion = replaceTextBetween(randomQuestion, '{','}', '')
+        for questions in allQuestions['questions']:
 
+            patternKeys = []
+            for pattern in questions['patterns']:
+                patternKeys.append(pattern)
+
+            selectedQuestion = questions['patterns'][random.choice(patternKeys)]
+
+        if (selectedQuestion):
             try:
                 currentUser = User.objects.get(id=1)
             except User.DoesNotExist:
@@ -60,9 +60,9 @@ class ChatBot():
             if (currentUser == False):
                 currentUser = User.objects.create(first_name=forUser, registration_date=datetime.datetime.now())
 
-            ChatbotQuestionSession.objects.create(user=currentUser, question=randomQuestion, asked_question_date=datetime.datetime.now())
+            ChatbotQuestionSession.objects.create(user=currentUser, question=selectedQuestion, asked_question_date=datetime.datetime.now())
 
-            return bot_name + ": <br />" + randomQuestion
+            return bot_name + ": <br />" + selectedQuestion
 
     def Input(sentence, fromUser):
 
