@@ -12,7 +12,7 @@ for questions in allQuestions['questions']:
     for pattern in questions['patterns']:
         patternKeys.append(pattern)
 
-    selectedQuestion = questions['patterns'][random.choice(patternKeys)]
+    selectedQuestion = random.choice(questions['patterns'][random.choice(patternKeys)])
 
     print(selectedQuestion)
 
