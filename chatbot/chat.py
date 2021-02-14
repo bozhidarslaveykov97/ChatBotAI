@@ -6,6 +6,7 @@ import datetime
 from chatbot.model import NeuralNet
 from chatbot.nltk_utils import bag_of_words, tokenize
 from chatbotweb.models import User, UserPersonality, ChatbotQuestionSession
+from django.template.loader import render_to_string
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -48,9 +49,9 @@ class ChatBot():
 
         # Whats next?
         getAnsweredQuestion = ChatBot.getQuestionByKey(currentUserSession.question_key)
-        if (getAnsweredQuestion['responses_after_question']):
-            responseAfterQuestion = random.choice(getAnsweredQuestion['responses_after_question'])
-            
+        if (getAnsweredQuestion['view_response_after_question']):
+            # responseAfterQuestion = random.choice(getAnsweredQuestion['view_response_after_question'])
+            responseAfterQuestion = render_to_string('chatbot_response_views/' + getAnsweredQuestion['view_response_after_question'], {'personality_name':answer, 'bot_name':bot_name})
             return responseAfterQuestion
         else:
             return 'Добре! :)'
@@ -80,7 +81,7 @@ class ChatBot():
             patternKeys = []
             for pattern in questions['patterns']:
                 patternKeys.append(pattern)
-            selectedQuestionKey = 'personaliy_name' #random.choice(patternKeys)
+            selectedQuestionKey = 'personality_name' #random.choice(patternKeys)
             selectedQuestion = random.choice(questions['patterns'][selectedQuestionKey])
 
         if (selectedQuestion):

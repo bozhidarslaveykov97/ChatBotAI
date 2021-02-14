@@ -3,14 +3,15 @@
     {
       "tag": "personality",
       "patterns": {
-        "personaliy_name": [
+        "personality_name": [
           {
             "question": "Как се казваш?",
             "answer_must_be": "human_name",
+            "view_response_after_question": "personality_name.html",
             "responses_after_question": [
-              "Приятно ми е {personaliy_name} :), аз съм {bot_name} :)",
-              "Готино име! Приятно ми е {personaliy_name} :), аз съм {bot_name} :)",
-              "Супер! Приятно ми е {personaliy_name} :), аз съм {bot_name} :)"
+              "Приятно ми е {personality_name} :), аз съм {bot_name} :)",
+              "Готино име! Приятно ми е {personality_name} :), аз съм {bot_name} :)",
+              "Супер! Приятно ми е {personality_name} :), аз съм {bot_name} :)"
             ]
           }
         ],
