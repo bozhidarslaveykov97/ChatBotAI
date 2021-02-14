@@ -1,9 +1,11 @@
 import random
 import json
 import torch
+import datetime
 
 from chatbot.model import NeuralNet
 from chatbot.nltk_utils import bag_of_words, tokenize
+from chatbotweb.models import User,UserPersonality,ChatbotQuestionSession
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -37,20 +39,42 @@ def replaceTextBetween(originalText, delimeterA, delimterB, replacementText):
 
 class ChatBot():
 
+    def saveTheAnswerFromQuestion(answer, fromUser):
+
+        return 'Добре! :)'
+
+
     def getRandomQuestion(forUser):
+
         for question in questions['questions']:
 
             randomQuestion = random.choice(question['patterns'])
             randomQuestion = replaceTextBetween(randomQuestion, '{','}', '')
 
+            try:
+                currentUser = User.objects.get(id=1)
+            except User.DoesNotExist:
+                currentUser = False
+            if (currentUser == False):
+                currentUser = User.objects.create(first_name=forUser, registration_date=datetime.datetime.now())
+
+            ChatbotQuestionSession.objects.create(user=currentUser, question=randomQuestion, asked_question_date=datetime.datetime.now())
+
             return bot_name + ": <br />" + randomQuestion
 
-    def Input(sentence):
+    def Input(sentence, fromUser):
 
-        hasActiveQuestionFromBot = 1
-        if (hasActiveQuestionFromBot):
-
-            return "Окей, супер."
+        userId = 1
+        # currentUser = User.objects.filter(id=1)
+        try:
+            currentUserSession = ChatbotQuestionSession.objects.filter(user=userId)
+            hasChatbotQuestionSession = 1
+        except ChatbotQuestionSession.DoesNotExist:
+            hasChatbotQuestionSession = 0
+        if (hasChatbotQuestionSession > 0):
+            # Save the answer
+            ChatbotQuestionSession.objects.filter(user=userId).delete()
+            return ChatBot.saveTheAnswerFromQuestion(sentence, fromUser)
 
         sentence = tokenize(sentence)
         X = bag_of_words(sentence, all_words)
