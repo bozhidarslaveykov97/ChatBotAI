@@ -10,6 +10,9 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 with open('./chatbot/intents.json', 'r', encoding="utf8") as json_data:
     intents = json.load(json_data)
 
+with open('./chatbot/questions.json', 'r', encoding="utf8") as json_data:
+    questions = json.load(json_data)
+
 FILE = "./chatbot/data.pth"
 data = torch.load(FILE)
 
@@ -27,6 +30,11 @@ model.eval()
 bot_name = "Ванеса"
 
 class ChatBot():
+
+    def getRandomQuestion(self):
+        for question in questions['questions']:
+                return bot_name + ": <br />" + random.choice(question['patterns'])
+
     def Input(sentence):
 
         sentence = tokenize(sentence)

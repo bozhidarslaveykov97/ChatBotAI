@@ -1,0 +1,19 @@
+{
+  "questions": [
+    {
+      "tag": "personality",
+      "patterns": [
+        "Как се казваш? {personaliy_name}",
+        "На колко години си? {personality_years}",
+        "Каква музика слушаш? {personality_music}",
+        "Имаш ли шофьорска книжка? {personality_driving_license}",
+        "Имаш ли автомобил? {personality_own_car}",
+        "От кой град си? {personality_city}",
+        "В кой град живееш? {personality_living_city}",
+        "Имаш ли гадже? {personality_girlfriend_boyfrend}",
+        "Как се казва гаджето ти? {personality_girlfriend_boyfrend}",
+        "Имаш ли инстаграм? {personality_instagram}"
+      ]
+    }
+  ]
+}

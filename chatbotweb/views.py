@@ -8,3 +8,7 @@ def index(request):
 def api_send_chat(request):
     chatbotResponse = ChatBot.Input(request.POST.get("input", ""));
     return HttpResponse(chatbotResponse)
+
+def api_get_random_question():
+    chatbotResponse = ChatBot.getRandomQuestion();
+    return HttpResponse(chatbotResponse)
