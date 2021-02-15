@@ -41,7 +41,7 @@
         ],
         "personality_city": [
           {
-            "question": "От кой град си?",
+            "question": "А родом от кой град си?",
             "answer_must_be": "city",
             "view_response_after_question": "personality_city.html"
           }

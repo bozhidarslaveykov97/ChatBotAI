@@ -31,9 +31,18 @@ model.load_state_dict(model_state)
 model.eval()
 
 bot_name = "Ванеса"
-userId = 1
 
 class ChatBot():
+
+    def getUserByFirstName(firstName):
+        try:
+            currentUser = User.objects.get(id=1)
+        except User.DoesNotExist:
+            currentUser = False
+        if (currentUser == False):
+            currentUser = User.objects.create(first_name=firstName, registration_date=datetime.datetime.now())
+
+        return currentUser
 
     def saveTheAnswerFromQuestion(answer, fromUserId):
 
@@ -43,9 +52,9 @@ class ChatBot():
         except ChatbotQuestionSession.DoesNotExist:
             hasChatbotQuestionSession = 0
         if (hasChatbotQuestionSession > 0):
-            UserPersonality.objects.create(user_id=fromUserId, personality_key=currentUserSession.question_key, personality_value=answer)
+            UserPersonality.objects.create(user=fromUserId, personality_key=currentUserSession.question_key, personality_value=answer)
 
-        ChatbotQuestionSession.objects.filter(user=userId).delete()
+        ChatbotQuestionSession.objects.filter(user=fromUserId).delete()
 
         # Whats next?
         getAnsweredQuestion = ChatBot.getQuestionByKey(currentUserSession.question_key)
@@ -62,46 +71,50 @@ class ChatBot():
         for questions in allQuestions['questions']:
             return random.choice(questions['patterns'][questionKey])
 
-    def startQuestionSession(selectedQuestion,selectedQuestionKey,forUser):
-        try:
-            currentUser = User.objects.get(id=1)
-        except User.DoesNotExist:
-            currentUser = False
-        if (currentUser == False):
-            currentUser = User.objects.create(first_name=forUser, registration_date=datetime.datetime.now())
+    def startQuestionSession(selectedQuestion,selectedQuestionKey,forUserId):
 
-        ChatbotQuestionSession.objects.create(user=currentUser, question=selectedQuestion['question'],
+        ChatbotQuestionSession.objects.create(user=forUserId, question=selectedQuestion['question'],
                                               question_key=selectedQuestionKey,
                                               asked_question_date=datetime.datetime.now())
 
         return bot_name + ": <br />" + selectedQuestion['question']
 
-    def getRandomQuestion(forUser):
+    def getRandomQuestion(forUserId):
+
+        getUserPersonalities = UserPersonality.objects.filter(user_id = forUserId)
 
         selectedQuestion = False
         for questions in allQuestions['questions']:
             patternKeys = []
             for pattern in questions['patterns']:
-                patternKeys.append(pattern)
-            selectedQuestionKey = random.choice(patternKeys)
-            selectedQuestion = random.choice(questions['patterns'][selectedQuestionKey])
+                addThisPattern = True
+                for userPersonality in getUserPersonalities:
+                    if (pattern == userPersonality.personality_key):
+                        addThisPattern = False
+                        break
+                if (addThisPattern):
+                    patternKeys.append(pattern)
+            if (patternKeys):
+                selectedQuestionKey = random.choice(patternKeys)
+                selectedQuestion = random.choice(questions['patterns'][selectedQuestionKey])
+            else:
+                return ""
 
         if (selectedQuestion):
-            return ChatBot.startQuestionSession(selectedQuestion, selectedQuestionKey, forUser)
+            return ChatBot.startQuestionSession(selectedQuestion, selectedQuestionKey, forUserId)
 
-    def Input(sentence, fromUser):
+    def Input(sentence, fromUserId):
 
-        # currentUser = User.objects.filter(id=1)
         try:
-            currentUserSession = ChatbotQuestionSession.objects.get(user=userId)
+            currentUserSession = ChatbotQuestionSession.objects.get(user=fromUserId)
             hasChatbotQuestionSession = 1
         except :
-            ChatbotQuestionSession.objects.filter(user=userId).delete()
+            ChatbotQuestionSession.objects.filter(user=fromUserId).delete()
             hasChatbotQuestionSession = 0
 
         if (hasChatbotQuestionSession > 0):
             # Save the answer
-            return ChatBot.saveTheAnswerFromQuestion(sentence, fromUserId=userId)
+            return ChatBot.saveTheAnswerFromQuestion(sentence, fromUserId=fromUserId)
 
         sentence = tokenize(sentence)
         X = bag_of_words(sentence, all_words)
