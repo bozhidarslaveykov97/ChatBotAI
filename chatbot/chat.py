@@ -125,6 +125,10 @@ class ChatBot():
             ChatbotPersonality.objects.filter(personality_key='emotional_status').update(personality_value='angry')
             chatbotResponse = 'Ако обичаш не ме псувай защото ще те блокирам..'
 
+        if ("{{chatbot_emotional_status_up}}" in chatbotResponse):
+            ChatbotPersonality.objects.filter(personality_key='emotional_status').update(personality_value='beautifully')
+            chatbotResponse = 'Благодаря ти за комплимента.. :)'
+
         if ("{{chatbot_emotional_status}}" in chatbotResponse):
             chatbotResponse = render_to_string('chatbot_response_views/chatbot_emotional_status.html', {'chatbot_personality':chatbotPersonality})
 
