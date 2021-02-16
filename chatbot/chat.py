@@ -123,12 +123,16 @@ class ChatBot():
 
         if ("{{chatbot_emotional_status_down}}" in chatbotResponse):
             ChatbotPersonality.objects.filter(personality_key='emotional_status').update(personality_value='angry')
+            chatbotResponse = 'Ако обичаш не ме псувай защото ще те блокирам..'
 
         if ("{{chatbot_emotional_status}}" in chatbotResponse):
             chatbotResponse = render_to_string('chatbot_response_views/chatbot_emotional_status.html', {'chatbot_personality':chatbotPersonality})
 
         if ("{{chatbot_emotional_answer}}" in chatbotResponse):
             chatbotResponse = render_to_string('chatbot_response_views/chatbot_emotional_answer.html', {'chatbot_personality':chatbotPersonality})
+
+        if ("{{chatbot_emotional_status_explain}}" in chatbotResponse):
+            chatbotResponse = render_to_string('chatbot_response_views/chatbot_emotional_status_explain.html', {'chatbot_personality':chatbotPersonality})
 
         return chatbotResponse
 
