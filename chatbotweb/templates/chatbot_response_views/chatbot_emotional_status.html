@@ -1,23 +1,35 @@
-{% if chatbot_personality.tired %}
+{% if chatbot_personality.emotional_status == 'tired' %}
     Леко изморена, но съм добре.
 {% endif %}
 
-{% if chatbot_personality.neutral %}
+{% if chatbot_personality.emotional_status == 'neutral' %}
     Мии.. кво да ти кажа. Малко ми е скука.
 {% endif %}
 
-{% if chatbot_personality.happy %}
+{% if chatbot_personality.emotional_status == 'happy' %}
     Ооо.. супер съм. Много добре.
 {% endif %}
 
-{% if chatbot_personality.boring %}
+{% if chatbot_personality.emotional_status == 'boring' %}
     Скука ми е..
 {% endif %}
 
-{% if chatbot_personality.ok %}
+{% if chatbot_personality.emotional_status == 'ok' %}
     Добре съм
 {% endif %}
 
-{% if chatbot_personality == False %}
+{% if chatbot_personality.emotional_status == 'angry' %}
+    Ядосана!
+{% endif %}
+
+{% if chatbot_personality.emotional_status == 'angry_and_sad' %}
+    Ядосана съм и тъжна!
+{% endif %}
+
+{% if chatbot_personality.emotional_status == 'sad' %}
+    Тъжна съм..
+{% endif %}
+
+{% if chatbot_personality.emotional_status == False %}
     Кво да ти кажа.. малко ми е скучно днес. Не съм си писала с никой.
 {% endif %}

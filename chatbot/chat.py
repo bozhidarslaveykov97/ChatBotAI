@@ -110,12 +110,25 @@ class ChatBot():
     def ParseNeuralNetworkResponse(chatbotResponse):
 
         try:
-            chatbotPersonality = ChatbotPersonality.objects.all().values()
+            chatbotPersonality = {}
+            getChatbotPersonality = ChatbotPersonality.objects.all()
+            for getChatbotPersonalityItem in getChatbotPersonality:
+                chatbotPersonality[
+                    getChatbotPersonalityItem.personality_key] = getChatbotPersonalityItem.personality_value
         except:
-            chatbotPersonality = False
+            # cant get chat bot personality
+            chatbotPersonality = {
+                'emotional_status': 'neutral'
+            }
 
-        if ("chatbot_emotional_status" in chatbotResponse):
+        if ("{{chatbot_emotional_status_down}}" in chatbotResponse):
+            ChatbotPersonality.objects.filter(personality_key='emotional_status').update(personality_value='angry')
+
+        if ("{{chatbot_emotional_status}}" in chatbotResponse):
             chatbotResponse = render_to_string('chatbot_response_views/chatbot_emotional_status.html', {'chatbot_personality':chatbotPersonality})
+
+        if ("{{chatbot_emotional_answer}}" in chatbotResponse):
+            chatbotResponse = render_to_string('chatbot_response_views/chatbot_emotional_answer.html', {'chatbot_personality':chatbotPersonality})
 
         return chatbotResponse
 
