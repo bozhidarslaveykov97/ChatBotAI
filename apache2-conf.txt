@@ -1,0 +1,22 @@
+<VirtualHost *:80>
+
+	DocumentRoot /home/vanesa-ai/ChatBotAI
+
+    Alias /static /home/vanesa-ai/ChatBotAI/chatbotweb/static
+    <Directory /home/vanesa-ai/ChatBotAI/chatbotweb/static>
+        Require all granted
+    </Directory>
+
+    <Directory /home/vanesa-ai/ChatBotAI/chatbotproject>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+
+	WSGIProcessGroup site
+	WSGIDaemonProcess site python-path=/home/vanesa-ai/ChatBotAI/ python-home=/home/vanesa-ai/production_env
+
+	WSGIScriptAlias / /home/vanesa-ai/ChatBotAI/chatbotproject/wsgi.py process-group=site
+
+</VirtualHost>
