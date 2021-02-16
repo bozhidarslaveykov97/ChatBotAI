@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'chatbotweb',
-    'server_config_generator',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
