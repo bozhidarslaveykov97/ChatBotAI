@@ -5,7 +5,7 @@ import datetime
 
 from chatbot.model import NeuralNet
 from chatbot.nltk_utils import bag_of_words, tokenize
-from chatbotweb.models import User, UserPersonality, ChatbotQuestionSession
+from chatbotweb.models import User, UserPersonality, ChatbotQuestionSession, ChatbotConversations, ChatbotPersonality
 from django.template.loader import render_to_string
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -32,6 +32,7 @@ model.eval()
 
 bot_name = "Ванеса"
 
+
 class ChatBot():
 
     def getUserByFirstName(firstName):
@@ -52,7 +53,8 @@ class ChatBot():
         except ChatbotQuestionSession.DoesNotExist:
             hasChatbotQuestionSession = 0
         if (hasChatbotQuestionSession > 0):
-            UserPersonality.objects.create(user=fromUserId, personality_key=currentUserSession.question_key, personality_value=answer)
+            UserPersonality.objects.create(user=fromUserId, personality_key=currentUserSession.question_key,
+                                           personality_value=answer)
 
         ChatbotQuestionSession.objects.filter(user=fromUserId).delete()
 
@@ -60,7 +62,9 @@ class ChatBot():
         getAnsweredQuestion = ChatBot.getQuestionByKey(currentUserSession.question_key)
         try:
             if (getAnsweredQuestion['view_response_after_question']):
-                responseAfterQuestion = render_to_string('chatbot_response_views/' + getAnsweredQuestion['view_response_after_question'], {currentUserSession.question_key:answer, 'bot_name':bot_name})
+                responseAfterQuestion = render_to_string(
+                    'chatbot_response_views/' + getAnsweredQuestion['view_response_after_question'],
+                    {currentUserSession.question_key: answer, 'bot_name': bot_name})
                 return responseAfterQuestion
         except:
             return 'Еми.. окей.'
@@ -71,7 +75,7 @@ class ChatBot():
         for questions in allQuestions['questions']:
             return random.choice(questions['patterns'][questionKey])
 
-    def startQuestionSession(selectedQuestion,selectedQuestionKey,forUserId):
+    def startQuestionSession(selectedQuestion, selectedQuestionKey, forUserId):
 
         ChatbotQuestionSession.objects.create(user=forUserId, question=selectedQuestion['question'],
                                               question_key=selectedQuestionKey,
@@ -81,7 +85,7 @@ class ChatBot():
 
     def getRandomQuestion(forUserId):
 
-        getUserPersonalities = UserPersonality.objects.filter(user_id = forUserId)
+        getUserPersonalities = UserPersonality.objects.filter(user_id=forUserId)
 
         selectedQuestion = False
         for questions in allQuestions['questions']:
@@ -103,12 +107,31 @@ class ChatBot():
         if (selectedQuestion):
             return ChatBot.startQuestionSession(selectedQuestion, selectedQuestionKey, forUserId)
 
+    def ParseNeuralNetworkResponse(chatbotResponse):
+
+        try:
+            chatbotPersonality = ChatbotPersonality.objects.all().values()
+        except:
+            chatbotPersonality = False
+
+        if ("chatbot_emotional_status" in chatbotResponse):
+            chatbotResponse = render_to_string('chatbot_response_views/chatbot_emotional_status.html', {'chatbot_personality':chatbotPersonality})
+
+        return chatbotResponse
+
     def Input(sentence, fromUserId):
 
+        # Start the conversation
+        try:
+            findConversation = ChatbotConversations.objects.filter(user=fromUserId, starting_date=datetime.date.today())
+        except:
+            findConversation = ChatbotConversations.objects.create(user=fromUserId, starting_date=datetime.datetime.now())
+
+        # Check for question sessions
         try:
             currentUserSession = ChatbotQuestionSession.objects.get(user=fromUserId)
             hasChatbotQuestionSession = 1
-        except :
+        except:
             ChatbotQuestionSession.objects.filter(user=fromUserId).delete()
             hasChatbotQuestionSession = 0
 
@@ -131,6 +154,7 @@ class ChatBot():
         if prob.item() > 0.75:
             for intent in intents['intents']:
                 if tag == intent["tag"]:
-                    return bot_name + ": <br />" + random.choice(intent['responses'])
+                    chatbotResponse = random.choice(intent['responses'])
+                    return bot_name + ": <br />" + ChatBot.ParseNeuralNetworkResponse(chatbotResponse)
         else:
             return ""

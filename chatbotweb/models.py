@@ -18,3 +18,8 @@ class ChatbotQuestionSession(models.Model):
 class ChatbotConversations(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     starting_date = models.DateTimeField('date published')
+    finishing_date = models.DateTimeField('date published', null=True)
+
+class ChatbotPersonality(models.Model):
+    personality_key = models.CharField(max_length=200)
+    personality_value = models.CharField(max_length=200)

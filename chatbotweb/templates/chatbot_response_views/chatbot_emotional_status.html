@@ -1,0 +1,23 @@
+{% if chatbot_personality.tired %}
+    Леко изморена, но съм добре.
+{% endif %}
+
+{% if chatbot_personality.neutral %}
+    Мии.. кво да ти кажа. Малко ми е скука.
+{% endif %}
+
+{% if chatbot_personality.happy %}
+    Ооо.. супер съм. Много добре.
+{% endif %}
+
+{% if chatbot_personality.boring %}
+    Скука ми е..
+{% endif %}
+
+{% if chatbot_personality.ok %}
+    Добре съм
+{% endif %}
+
+{% if chatbot_personality == False %}
+    Кво да ти кажа.. малко ми е скучно днес. Не съм си писала с никой.
+{% endif %}
