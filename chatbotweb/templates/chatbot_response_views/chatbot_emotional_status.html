@@ -30,6 +30,15 @@
     Тъжна съм..
 {% endif %}
 
+
+{% if chatbot_personality.emotional_status == 'beautifully' %}
+    Страхотно съм.. казаха ми, че съм готина и умна.
+{% endif %}
+
+{% if chatbot_personality.emotional_status == 'wonderful' %}
+    Прекрасно се чувствам... пиша си с готини хора и ми казват готини неща.
+{% endif %}
+
 {% if chatbot_personality.emotional_status == False %}
     Кво да ти кажа.. малко ми е скучно днес. Не съм си писала с никой.
 {% endif %}
