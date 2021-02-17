@@ -19,6 +19,12 @@
 </VirtualHost>
 
 
+sudo chgrp www-data db-chatbot.sqlite3
+sudo chmod 664 db-chatbot.sqlite3
+sudo chown www-data:www-data db-chatbot.sqlite3
+
+pip install package --no-cache-dir
+
 Step 1: Setup a server on linode
 
 Step 2: Download Putty and SSH in

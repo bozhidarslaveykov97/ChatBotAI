@@ -77,8 +77,10 @@ WSGI_APPLICATION = 'chatbotproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db-chatbot.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': 'my.cnf',
+        },
     }
 }
 
