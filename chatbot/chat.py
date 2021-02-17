@@ -13,13 +13,13 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 chatbotFolder = os.path.dirname(os.path.abspath(__file__))
 
-with open(chatbotFolder + 'intents.json', 'r', encoding="utf8") as json_data:
+with open(chatbotFolder + '/intents.json', 'r', encoding="utf8") as json_data:
     intents = json.load(json_data)
 
-with open(chatbotFolder + 'questions.json', 'r', encoding="utf8") as json_data:
+with open(chatbotFolder + '/questions.json', 'r', encoding="utf8") as json_data:
     allQuestions = json.load(json_data)
 
-FILE = chatbotFolder + "data.pth"
+FILE = chatbotFolder + "/data.pth"
 data = torch.load(FILE)
 
 input_size = data["input_size"]
