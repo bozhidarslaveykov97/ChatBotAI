@@ -2,6 +2,7 @@
 <VirtualHost *:80>
         ServerName 135.181.47.0
         ServerAdmin selfworksbg@gmail.com
+        WSGIApplicationGroup %{GLOBAL}
         WSGIScriptAlias / /var/www/ChatBotAI/chatbotproject/wsgi.py
         <Directory /var/www/ChatBotAI/chatbotweb/>
                 Order allow,deny
