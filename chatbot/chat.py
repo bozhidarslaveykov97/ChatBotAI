@@ -2,6 +2,7 @@ import random
 import json
 import torch
 import datetime
+import os
 
 from chatbot.model import NeuralNet
 from chatbot.nltk_utils import bag_of_words, tokenize
@@ -10,13 +11,15 @@ from django.template.loader import render_to_string
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-with open('intents.json', 'r', encoding="utf8") as json_data:
+chatbotFolder = os.path.dirname(os.path.abspath(__file__))
+
+with open(chatbotFolder + 'intents.json', 'r', encoding="utf8") as json_data:
     intents = json.load(json_data)
 
-with open('questions.json', 'r', encoding="utf8") as json_data:
+with open(chatbotFolder + 'questions.json', 'r', encoding="utf8") as json_data:
     allQuestions = json.load(json_data)
 
-FILE = "data.pth"
+FILE = chatbotFolder + "data.pth"
 data = torch.load(FILE)
 
 input_size = data["input_size"]
