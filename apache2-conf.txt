@@ -1,25 +1,22 @@
+/etc/apache2/sites-available/ChatBotAI.conf
 <VirtualHost *:80>
-
-	DocumentRoot /home/vanesa-ai/ChatBotAI
-
-    Alias /static /home/vanesa-ai/ChatBotAI/chatbotweb/static
-    <Directory /home/vanesa-ai/ChatBotAI/chatbotweb/static>
-        Require all granted
-    </Directory>
-
-    <Directory /home/vanesa-ai/ChatBotAI/chatbotproject>
-        <Files wsgi.py>
-            Require all granted
-        </Files>
-    </Directory>
-
-
-	WSGIProcessGroup site
-	WSGIDaemonProcess site python-path=/home/vanesa-ai/ChatBotAI/ python-home=/home/vanesa-ai/production_env
-
-	WSGIScriptAlias / /home/vanesa-ai/ChatBotAI/chatbotproject/wsgi.py process-group=site
-
+        ServerName 135.181.47.0
+        ServerAdmin selfworksbg@gmail.com
+        WSGIScriptAlias / /var/www/ChatBotAI/chatbotproject/wsgi.py
+        <Directory /var/www/ChatBotAI/chatbotweb/>
+                Order allow,deny
+                Allow from all
+        </Directory>
+        Alias /static /var/www/ChatBotAI/chatbotweb/static
+        <Directory /var/www/ChatBotAI/chatbotweb/static/>
+                Order allow,deny
+                Allow from all
+        </Directory>
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        LogLevel warn
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
+
 
 Step 1: Setup a server on linode
 
@@ -59,23 +56,7 @@ Step 10: configure and enable virtual host
 
 
 CLICK TO DOWNLOAD THE CODE TO PUT IN webApp.conf
-<VirtualHost *:80>
-		ServerName localhost
-		ServerAdmin selfworksbg@gmail.com
-		WSGIScriptAlias / /var/www/ChatBotAI/chatbotproject/wsgi.py
-		<Directory /var/www/ChatBotAI/chatbotweb/>
-			Order allow,deny
-			Allow from all
-		</Directory>
-		Alias /static /var/www/ChatBotAI/chatbotweb/static
-		<Directory /var/www/ChatBotAI/chatbotweb/static/>
-			Order allow,deny
-			Allow from all
-		</Directory>
-		ErrorLog ${APACHE_LOG_DIR}/error.log
-		LogLevel warn
-		CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
+
 
 -      sudo a2ensite webApp
 -      systemctl reload apache2
