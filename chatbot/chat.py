@@ -10,13 +10,13 @@ from django.template.loader import render_to_string
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-with open('chatbot/intents.json', 'r', encoding="utf8") as json_data:
+with open('intents.json', 'r', encoding="utf8") as json_data:
     intents = json.load(json_data)
 
-with open('chatbot/questions.json', 'r', encoding="utf8") as json_data:
+with open('questions.json', 'r', encoding="utf8") as json_data:
     allQuestions = json.load(json_data)
 
-FILE = "chatbot/data.pth"
+FILE = "data.pth"
 data = torch.load(FILE)
 
 input_size = data["input_size"]
