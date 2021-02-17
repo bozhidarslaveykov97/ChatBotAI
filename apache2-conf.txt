@@ -85,6 +85,10 @@ Step 11: Create .wsgi file
 Place the below code in the wsgi file
 
 
+
+$ sudo apt-get remove libapache2-mod-python libapache2-mod-wsgi
+$ sudo apt-get install libapache2-mod-wsgi-py3
+
 #!/usr/bin/python
 import sys
 import logging
