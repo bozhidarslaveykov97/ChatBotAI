@@ -8,8 +8,12 @@ https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/
 """
 
 import os
-
+import sys
+import logging
 from django.core.wsgi import get_wsgi_application
+
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0,"/var/www/ChatBotAI/")
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chatbotproject.settings')
 

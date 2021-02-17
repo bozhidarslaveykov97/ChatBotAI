@@ -20,3 +20,85 @@
 	WSGIScriptAlias / /home/vanesa-ai/ChatBotAI/chatbotproject/wsgi.py process-group=site
 
 </VirtualHost>
+
+Step 1: Setup a server on linode
+
+Step 2: Download Putty and SSH in
+
+Step 3: Download and Install Apache
+- sudo apt update
+- sudo apt install apache2
+- apache2 -version
+
+Step 4: Configure Firewall
+- sudo ufw app list
+- sudo ufw allow ‘Apache’
+
+Step 5: Configure apache
+- sudo systemctl status apache 2
+
+Step 6: Install and enable mod_wsgi
+        apt-cache search libapache2-mod-wsgi
+        sudo apt-get update
+-       sudo apt-get install libapache2-mod-wsgi python-dev
+
+Step 7:  Creating flask app
+-       cd /var/www
+-       sudo mkdir webApp
+-       cd webApp
+
+Step 8: Install flask
+        sudo apt-get install python3-pip
+-        sudo pip install Flask
+-        sudo pip install flask_sqlalchemy
+
+Step 9: Use winSCP to transfer python files to server
+
+Step 10: configure and enable virtual host
+-       sudo nano /etc/apache2/sites-available/webApp.conf
+
+
+CLICK TO DOWNLOAD THE CODE TO PUT IN webApp.conf
+<VirtualHost *:80>
+		ServerName localhost
+		ServerAdmin selfworksbg@gmail.com
+		WSGIScriptAlias / /var/www/ChatBotAI/chatbotproject/wsgi.py
+		<Directory /var/www/ChatBotAI/chatbotweb/>
+			Order allow,deny
+			Allow from all
+		</Directory>
+		Alias /static /var/www/ChatBotAI/chatbotweb/static
+		<Directory /var/www/ChatBotAI/chatbotweb/static/>
+			Order allow,deny
+			Allow from all
+		</Directory>
+		ErrorLog ${APACHE_LOG_DIR}/error.log
+		LogLevel warn
+		CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+-      sudo a2ensite webApp
+-      systemctl reload apache2
+
+Step 11: Create .wsgi file
+-      sudo nano webapp.wsgi
+Place the below code in the wsgi file
+
+
+#!/usr/bin/python
+import sys
+import logging
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0,"/var/www/webApp/")
+
+from webApp import app as application
+application.secret_key = 'Add your secret key'
+
+Step 12: Restart apache
+-      sudo service apache2 restart
+
+Step 13: Visit the ip address of your server in the browser to  access your website!
+
+
+
+tail -f /var/log/apache2/error.log
