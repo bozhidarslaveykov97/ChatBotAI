@@ -23,3 +23,4 @@ class ChatbotConversations(models.Model):
 class ChatbotPersonality(models.Model):
     personality_key = models.CharField(max_length=200)
     personality_value = models.CharField(max_length=200)
+

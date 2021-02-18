@@ -23,6 +23,9 @@ sudo chgrp www-data db-chatbot.sqlite3
 sudo chmod 664 db-chatbot.sqlite3
 sudo chown www-data:www-data db-chatbot.sqlite3
 
+
+sudo apt-get install python3-dev libmysqlclient-dev
+
 pip install package --no-cache-dir
 
 Step 1: Setup a server on linode
