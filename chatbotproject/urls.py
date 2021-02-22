@@ -32,7 +32,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
      # path('api/login', views.LoginView.as_view(), name='auth_register'),
-    path('api/register', views.RegisterView.as_view(), name='auth_register'),
+    path('api/register/', views.RegisterView.as_view(), name='auth_register'),
 
     path("api/send_chat", views.api_send_chat, name="api_send_chat"),
     path("api/get_random_question", views.api_get_random_question, name="api_get_random_question"),
