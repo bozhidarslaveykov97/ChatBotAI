@@ -14,12 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from chatbotweb import views;
+from rest_framework import routers
+
+apiRouter = routers.DefaultRouter()
+apiRouter.register('users', views.UserViewSet)
+apiRouter.register('groups', views.GroupViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path("api/send_chat", views.api_send_chat, name="api_send_chat"),
-    path("api/get_random_question", views.api_get_random_question, name="api_get_random_question")
+    path("api/get_random_question", views.api_get_random_question, name="api_get_random_question"),
+
+    path('api/', include(apiRouter.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    path('api/register/', views.RegisterView.as_view(), name='auth_register')
 ]
