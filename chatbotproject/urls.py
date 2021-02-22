@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from chatbotweb import views;
+from chatbotweb import views
 from rest_framework import routers
 
 apiRouter = routers.DefaultRouter()
 apiRouter.register('users', views.UserViewSet)
 apiRouter.register('groups', views.GroupViewSet)
+
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,5 +33,8 @@ urlpatterns = [
     path('api/', include(apiRouter.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
-    path('api/register/', views.RegisterView.as_view(), name='auth_register')
+     # path('api/login', views.LoginView.as_view(), name='auth_register'),
+     path('api/register', views.RegisterView.as_view(), name='auth_register')
+
 ]
+
