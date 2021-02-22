@@ -39,6 +39,6 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    path('^\.well-known/', include('letsencrypt.urls'))
+    path(r'^\.well-known/', include('letsencrypt.urls'))
 ]
 
