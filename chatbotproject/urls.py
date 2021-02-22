@@ -37,8 +37,6 @@ urlpatterns = [
     path("api/send_chat", views.api_send_chat, name="api_send_chat"),
     path("api/get_random_question", views.api_get_random_question, name="api_get_random_question"),
 
-    path('admin/', admin.site.urls),
-
-    path(r'^\.well-known/', include('letsencrypt.urls'))
+    path('admin/', admin.site.urls)
 ]
 
