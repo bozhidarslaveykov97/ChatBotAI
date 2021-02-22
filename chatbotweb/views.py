@@ -11,7 +11,7 @@ from chatbot.chat import ChatBot
 from chatbotweb.serializers import UserSerializer, GroupSerializer, RegisterSerializer
 
 def index(request):
-    return render(request, '__chat.html')
+    return render(request, 'index.html')
 
 def api_send_chat(request):
 
