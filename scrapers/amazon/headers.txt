@@ -1,0 +1,21 @@
+accept-ch: ect,rtt,downlink
+accept-ch-lifetime: 86400
+cache-control: no-cache
+content-encoding: gzip
+content-language: en-US
+content-type: text/html;charset=UTF-8
+date: Fri, 26 Mar 2021 21:50:19 GMT
+expires: -1
+pragma: no-cache
+server: Server
+strict-transport-security: max-age=47474747; includeSubDomains; preload
+vary: Content-Type,Accept-Encoding,X-Amzn-CDN-Cache,X-Amzn-AX-Treatment,User-Agent
+via: 1.1 07b0ce8d397946092477a11f052cca19.cloudfront.net (CloudFront)
+x-amz-cf-id: kkSvsgmSIrOFAsgDdt8S7U6ikKn1Y_sVbp7P_h2BiaFXZIbexKgRgg==
+x-amz-cf-pop: SOF50-C1
+x-amz-rid: 69MF3XCZ7G2YR6G5XTGW
+x-cache: Miss from cloudfront
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-ua-compatible: IE=edge
+x-xss-protection: 1;

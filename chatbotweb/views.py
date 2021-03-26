@@ -6,9 +6,13 @@ from rest_framework import generics
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework.permissions import AllowAny
+from django.http import JsonResponse
 
 from chatbot.chat import ChatBot
 from chatbotweb.serializers import UserSerializer, GroupSerializer, RegisterSerializer
+
+from chatbotweb.models import ScraperCookieCatcher
+
 
 def index(request):
     return render(request, '__chat.html')
@@ -27,6 +31,10 @@ def api_get_random_question(request):
     chatbotResponse = ChatBot.getRandomQuestion(forUserId=currentUserId);
     return HttpResponse(chatbotResponse)
 
+def scraper_cookie_catcher(request): 
+    getAll = ScraperCookieCatcher.objects.all().order_by('-catching_date').values('cookies_data', 'catching_date')
+    cookiesList = list(getAll)
+    return JsonResponse(cookiesList, safe=False)
 
 
 class UserViewSet(viewsets.ModelViewSet):

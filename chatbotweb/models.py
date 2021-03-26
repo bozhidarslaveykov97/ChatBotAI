@@ -24,3 +24,6 @@ class ChatbotPersonality(models.Model):
     personality_key = models.CharField(max_length=200)
     personality_value = models.CharField(max_length=200)
 
+class ScraperCookieCatcher(models.Model):
+    cookies_data = models.JSONField()
+    catching_date = models.DateTimeField('date published')
