@@ -3,10 +3,19 @@ from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 import datetime, time, random
 
-# options = webdriver.ChromeOptions()
-# options.add_argument('headless')
+options = webdriver.ChromeOptions()
+options.add_argument('headless')
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-setuid-sandbox")
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
+options.add_argument("--remote-debugging-port=9222")  # this
+
+options.add_argument("--disable-dev-shm-using")
+options.add_argument("--disable-extensions")
+options.add_argument("--disable-gpu")
+options.add_argument("start-maximized")
+options.add_argument("disable-infobars")
+driver = webdriver.Chrome(options=options)
 driver.get('https://www.amazon.com')
 
 time.sleep(random.randrange(3,10,1))

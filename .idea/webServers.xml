@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7cd614b0-86fa-4afd-8fc7-68089f34de0f" name="vanesa.ai" url="http://vanesa.ai">
+        <fileTransfer rootFolder="/var/www/ChatBotAI" accessType="SFTP" host="135.181.32.17" port="22" sshConfigId="2edfe42c-8e27-423a-8f8a-0a9245958d5e" sshConfig="root@135.181.32.17:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
