@@ -1,7 +1,7 @@
 import json
 import random
 
-with open('./chatbot/questions.json', 'r', encoding="utf8") as json_data:
+with open('chatbot/questions.json', 'r', encoding="utf8") as json_data:
     allQuestions = json.load(json_data)
 
 randomQuestion = False
