@@ -1,8 +1,8 @@
-{'domain': 'www.amazon.com', 'expiry': 1647035415, 'httpOnly': False, 'name': 'csm-hit', 'path': '/', 'secure': False, 'value': 'tb:4DWGYF1VFF8TGD3RS90P+s-4DWGYF1VFF8TGD3RS90P|1616795415067&t:1616795415067&adb:adblk_no'}
-{'domain': '.amazon.com', 'expiry': 1648331411, 'httpOnly': False, 'name': 'ubid-main', 'path': '/', 'secure': True, 'value': '133-5911026-9903058'}
+{'domain': 'www.amazon.com', 'expiry': 1647102647, 'httpOnly': False, 'name': 'csm-hit', 'path': '/', 'secure': False, 'value': 'tb:YNZPHFA464ZHSGGWB48B+s-YNZPHFA464ZHSGGWB48B|1616862647432&t:1616862647432&adb:adblk_no'}
+{'domain': '.amazon.com', 'expiry': 1648398642, 'httpOnly': False, 'name': 'ubid-main', 'path': '/', 'secure': True, 'value': '132-1628934-2315013'}
 {'domain': '.amazon.com', 'httpOnly': False, 'name': 'skin', 'path': '/', 'secure': False, 'value': 'noskin'}
-{'domain': '.amazon.com', 'expiry': 1648331408, 'httpOnly': True, 'name': 'sp-cdn', 'path': '/', 'secure': True, 'value': '"L5Z9:BG"'}
-{'domain': '.amazon.com', 'expiry': 1648331411, 'httpOnly': False, 'name': 'session-id-time', 'path': '/', 'secure': False, 'value': '2082787201l'}
-{'domain': '.amazon.com', 'expiry': 1648331408, 'httpOnly': False, 'name': 'i18n-prefs', 'path': '/', 'secure': False, 'value': 'USD'}
-{'domain': '.amazon.com', 'expiry': 1648331411, 'httpOnly': False, 'name': 'session-token', 'path': '/', 'secure': True, 'value': 'al7l5yhwezHF3W6v9XONCEyonQEM54Js5jmvWc/Irx04UZ5lk8rruDrfIWkQ2xw81Xf/hAN0GwCMHZHTXXjJ9nO2IxOo1Up0vlWcr3gVhzHZOkOyJShA/K7ciu0UurWyS15yWoGnhog87cX1TysWY9NpTJ+FaC0eoJXpELLyvWooxUGTp0Z7t09KT6nq9NXKMCB+M40W9LH3RBx2CLZhszbkSpa3wN8ZWkhT2yReT+XFPYuoye6TNGzGSMtr1igO'}
-{'domain': '.amazon.com', 'expiry': 1648331411, 'httpOnly': False, 'name': 'session-id', 'path': '/', 'secure': True, 'value': '138-8615986-5013807'}
+{'domain': '.amazon.com', 'expiry': 1648398640, 'httpOnly': True, 'name': 'sp-cdn', 'path': '/', 'secure': True, 'value': '"L5Z9:BG"'}
+{'domain': '.amazon.com', 'expiry': 1648398642, 'httpOnly': False, 'name': 'session-id-time', 'path': '/', 'secure': False, 'value': '2082787201l'}
+{'domain': '.amazon.com', 'expiry': 1648398640, 'httpOnly': False, 'name': 'i18n-prefs', 'path': '/', 'secure': False, 'value': 'USD'}
+{'domain': '.amazon.com', 'expiry': 1648398642, 'httpOnly': False, 'name': 'session-token', 'path': '/', 'secure': True, 'value': 'VQGb5iBtPNN+xnsQZ6KIRbUrujs8gbS1Zu4d6w8n6b41mFctjZdkLdM95s1cV2KbDObSKA3TA8XK8nrPKQxxlGP99tC+cXN/YlovEJCJLDvBaA3PZNCJU7VTbEjzAtsu7j+YNFyinpSU3cClLt7d2F6nPrk0wqOny7zgkyXrSRT3kIvfg+Hq1InRKXn2zr8ETcsvhWXOTi/a/8EkyVUZkqApmYtDJ38z0J9uAqkpI5ABgV8d7u9nAnFm6Dkw1lnJ'}
+{'domain': '.amazon.com', 'expiry': 1648398642, 'httpOnly': False, 'name': 'session-id', 'path': '/', 'secure': True, 'value': '146-9975101-7620649'}

@@ -6,15 +6,10 @@ import datetime, time, random
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument("--no-sandbox")
-options.add_argument("--disable-setuid-sandbox")
 
-options.add_argument("--remote-debugging-port=9222")  # this
 
-options.add_argument("--disable-dev-shm-using")
-options.add_argument("--disable-extensions")
-options.add_argument("--disable-gpu")
-options.add_argument("start-maximized")
-options.add_argument("disable-infobars")
+
+# driver = webdriver.Chrome(ChromeDriverManager().install())
 driver = webdriver.Chrome(options=options)
 driver.get('https://www.amazon.com')
 
@@ -42,7 +37,7 @@ except:
 time.sleep(random.randrange(1,3,1))
 
 pop_zip = driver.find_element_by_id('GLUXZipUpdateInput')
-pop_zip.send_keys('10001')
+pop_zip.send_keys('10004')
 
 pop_zip = driver.find_element_by_id('GLUXZipUpdate')
 pop_zip.click()
@@ -88,3 +83,5 @@ print(inner_html)
 
 if 'New York' in inner_html:
     print('Yes we switched to US :)')
+
+driver.quit()

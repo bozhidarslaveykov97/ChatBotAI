@@ -39,5 +39,6 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    path('api/scraper/cookiecatcher/', views.scraper_cookie_catcher)
+    path('api/scraper/cookiecatcher', views.api_scraper_cookie_catcher, name="api_scraper_cookie_catcher")
+
 ]
