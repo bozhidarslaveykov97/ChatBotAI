@@ -32,7 +32,7 @@ def api_get_random_question(request):
 
 def api_scraper_cookie_catcher(request):
 
-    getAll = ScraperCookieCatcher.objects.all().order_by('-catching_date','desc').values('cookies_data', 'catching_date')
+    getAll = ScraperCookieCatcher.objects.all().order_by('-catching_date').values('website_domain','cookies_data', 'catching_date')
     cookiesList = list(getAll)
     return JsonResponse(cookiesList, safe=False)
 

@@ -9,6 +9,6 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
 
         data = ScraperAmazon.runBrowser()
-        ScraperCookieCatcher.objects.create(cookies_data=data,catching_date=datetime.datetime.now())
+        ScraperCookieCatcher.objects.create(website_domain="amazon.com",cookies_data=data,catching_date=datetime.datetime.now())
 
         print("done!")

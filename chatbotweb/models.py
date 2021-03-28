@@ -26,4 +26,5 @@ class ChatbotPersonality(models.Model):
 
 class ScraperCookieCatcher(models.Model):
     cookies_data = models.JSONField()
+    website_domain = models.CharField(max_length=200, null=True)
     catching_date = models.DateTimeField('date published')
