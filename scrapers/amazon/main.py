@@ -89,9 +89,9 @@ class ScraperAmazon():
 
         driver.quit()
 
-        data = {
+        responseData = {
             "first_cookies":first_cookies,
             "second_cookies":second_cookies,
-            "headers":headers
+            "headers":hh
         }
-        return data
+        return responseData
