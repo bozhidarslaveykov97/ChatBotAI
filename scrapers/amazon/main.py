@@ -92,7 +92,6 @@ class ScraperAmazon():
         data = {
             "first_cookies":first_cookies,
             "second_cookies":second_cookies,
-            "headers":headers,
+            "headers":headers
         }
-
         return data

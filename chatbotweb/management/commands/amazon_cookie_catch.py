@@ -7,8 +7,8 @@ import datetime
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-        cookies = ScraperAmazon.runBrowser()
 
-        ScraperCookieCatcher.objects.create(cookies_data=cookies,catching_date=datetime.datetime.now())
+        data = ScraperAmazon.runBrowser()
+        ScraperCookieCatcher.objects.create(cookies_data=data,catching_date=datetime.datetime.now())
 
         print("done!")
