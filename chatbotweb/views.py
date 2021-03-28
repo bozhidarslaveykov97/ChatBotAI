@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
+from django.db.models import Count
 
 from rest_framework import generics
 from rest_framework import viewsets
@@ -31,7 +32,6 @@ def api_get_random_question(request):
     return HttpResponse(chatbotResponse)
 
 def api_scraper_cookie_catcher(request):
-
     getAll = ScraperCookieCatcher.objects.all().order_by('-catching_date').values('website_domain','cookies_data', 'catching_date')
     cookiesList = list(getAll)
     return JsonResponse(cookiesList, safe=False)
