@@ -36,7 +36,7 @@ def api_scraper_cookie_catcher(request):
     website_domain = request.GET.get("website_domain")
 
     cookiesList = []
-    getCookies = ScraperCookieCatcher.objects.raw('SELECT * FROM chatbotweb_scrapercookiecatcher WHERE website_domain = %s', [website_domain])
+    getCookies = ScraperCookieCatcher.objects.raw('SELECT * FROM chatbotweb_scrapercookiecatcher WHERE website_domain = %s ORDER BY catching_date DESC', [website_domain])
     for cookie in getCookies:
         cookiesList.append({
             "id":cookie.id,
