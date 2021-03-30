@@ -5,7 +5,7 @@ import datetime, time, random
 
 class ScraperAmazon():
 
-    def runBrowser():
+    def runBrowser(inputData):
 
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
@@ -13,7 +13,7 @@ class ScraperAmazon():
 
         # driver = webdriver.Chrome(ChromeDriverManager().install())
         driver = webdriver.Chrome(options=options)
-        driver.get('https://www.amazon.com')
+        driver.get('https://www.' + inputData['domain'])
 
         time.sleep(random.randrange(3, 10, 1))
 
@@ -39,7 +39,7 @@ class ScraperAmazon():
         time.sleep(random.randrange(1, 3, 1))
 
         pop_zip = driver.find_element_by_id('GLUXZipUpdateInput')
-        pop_zip.send_keys('10004')
+        pop_zip.send_keys(inputData['zipcode'])
 
         pop_zip = driver.find_element_by_id('GLUXZipUpdate')
         pop_zip.click()
@@ -47,7 +47,7 @@ class ScraperAmazon():
         time.sleep(random.randrange(1, 2, 1))
 
         # reload again to avoid some checks
-        driver.get('https://www.amazon.com')
+        driver.get('https://www.' + inputData['domain'])
 
         # print(driver.get_cookies())   #getting cookeis
         # save cookies in a pkl file
