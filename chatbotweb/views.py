@@ -32,8 +32,19 @@ def api_get_random_question(request):
     return HttpResponse(chatbotResponse)
 
 def api_scraper_cookie_catcher(request):
-    getAll = ScraperCookieCatcher.objects.all().order_by('-catching_date').values('website_domain','cookies_data', 'catching_date')
-    cookiesList = list(getAll)
+
+    website_domain = request.GET.get("website_domain")
+
+    cookiesList = []
+    getCookies = ScraperCookieCatcher.objects.raw('SELECT * FROM chatbotweb_scrapercookiecatcher WHERE website_domain = %s', [website_domain])
+    for cookie in getCookies:
+        cookiesList.append({
+            "id":cookie.id,
+            "website_domain":cookie.website_domain,
+            "cookies_data":cookie.cookies_data,
+            "catching_date":cookie.catching_date,
+        })
+
     return JsonResponse(cookiesList, safe=False)
 
 class UserViewSet(viewsets.ModelViewSet):
