@@ -1,0 +1,17 @@
+accept-ch: ect,rtt,downlink
+accept-ch-lifetime: 86400
+cache-control: no-cache
+content-encoding: gzip
+content-language: fr-FR
+content-type: text/html;charset=UTF-8
+date: Tue, 30 Mar 2021 16:45:31 GMT
+expires: -1
+pragma: no-cache
+server: Server
+strict-transport-security: max-age=47474747; includeSubDomains; preload
+vary: Accept-Encoding
+x-amz-rid: 0P3VZASZ0MHCKWEFAFF1
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-ua-compatible: IE=edge
+x-xss-protection: 1;

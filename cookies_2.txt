@@ -1,0 +1,6 @@
+{'domain': '.amazon.fr', 'expiry': 1648658731, 'httpOnly': False, 'name': 'session-id-time', 'path': '/', 'secure': False, 'value': '2082754801l'}
+{'domain': '.amazon.fr', 'expiry': 1648658731, 'httpOnly': False, 'name': 'ubid-acbfr', 'path': '/', 'secure': True, 'value': '260-9641301-8827104'}
+{'domain': '.amazon.fr', 'expiry': 1648658731, 'httpOnly': False, 'name': 'session-id', 'path': '/', 'secure': True, 'value': '261-5989813-3382462'}
+{'domain': '.amazon.fr', 'expiry': 1648658730, 'httpOnly': False, 'name': 'i18n-prefs', 'path': '/', 'secure': False, 'value': 'EUR'}
+{'domain': 'www.amazon.fr', 'expiry': 1647362730, 'httpOnly': False, 'name': 'csm-hit', 'path': '/', 'secure': False, 'value': 'tb:s-VRQZRE5FGV20A81J6Y27|1617122730420&t:1617122730999&adb:adblk_no'}
+{'domain': '.amazon.fr', 'expiry': 1648658730, 'httpOnly': False, 'name': 'session-token', 'path': '/', 'secure': True, 'value': '"LkgwfF55FT5aLjHq342JpOgKfCZ40+SaaW0cgwDuOGAAko2vumVnPiODeHcEOTg5VBf6Qm0M4ZGRVAyHsv9NwNHv8nwyfuAdDR7ZT/NFbGjd1hfXMtEMRVpDyR44mGw/B6HeZ2+DC7i1pF5rOxT+lrGnkeKMLSOFJ6apcfuI1QBB3LvrSvw7dobrfbbF8Y7Z4bElbxc13asE07rt/aJwi04pleaFx7j2G7k/dhPNbH6vdNttsmPe/ob/OSuVzd73e0D3VmrZQKo="'}

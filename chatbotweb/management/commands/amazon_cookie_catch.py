@@ -9,7 +9,7 @@ import datetime
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
 
-        amazon_domains = '[{"domain":"amazon.co.uk", "zipcode":"10004"},{"domain":"amazon.com", "zipcode":"10004"},{"domain":"amazon.it", "zipcode":"00118"},{"domain":"amazon.fr", "zipcode":"75000"}]';
+        amazon_domains = '[{"domain":"amazon.co.uk", "zipcode":"SO152GB"},{"domain":"amazon.com", "zipcode":"10004"},{"domain":"amazon.it", "zipcode":"00118"},{"domain":"amazon.fr", "zipcode":"75000"}]';
 
         amazon_domains = json.loads(amazon_domains)
 
