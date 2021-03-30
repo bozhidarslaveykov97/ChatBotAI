@@ -14,8 +14,10 @@ class Command(BaseCommand):
         amazon_domains = json.loads(amazon_domains)
 
         for inputData in amazon_domains:
-
-            data = ScraperAmazon.runBrowser(inputData)
-            ScraperCookieCatcher.objects.create(website_domain=inputData['domain'],cookies_data=data,catching_date=datetime.datetime.now())
+            try:
+                data = ScraperAmazon.runBrowser(inputData)
+                ScraperCookieCatcher.objects.create(website_domain=inputData['domain'],cookies_data=data,catching_date=datetime.datetime.now())
+            except:
+                print("Next entry.")
 
         print("done!")
